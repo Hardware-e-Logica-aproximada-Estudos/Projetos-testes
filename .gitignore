@@ -1,0 +1,2 @@
+# Ignorando todos os aquivos .vcd, comente a linha abaixo para permitir passagem
+*.vcd

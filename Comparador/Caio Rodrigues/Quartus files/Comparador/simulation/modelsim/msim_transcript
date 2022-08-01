@@ -1,0 +1,51 @@
+# Reading pref.tcl
+# do Sorter_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/caior/Arquivaria/Trabalhos/Grupo\ de\ estudo\ Gutemberg/Comparador {D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:58:15 on Aug 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador" D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter.v 
+# -- Compiling module Sorter
+# 
+# Top level modules:
+# 	Sorter
+# End time: 00:58:15 on Aug 01,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/caior/Arquivaria/Trabalhos/Grupo\ de\ estudo\ Gutemberg/Comparador {D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 00:58:16 on Aug 01,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador" D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter_tb.v 
+# -- Compiling module Sorter_tb
+# 
+# Top level modules:
+# 	Sorter_tb
+# End time: 00:58:16 on Aug 01,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs="+acc"  Sorter_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L rtl_work -L work -voptargs=""+acc"" Sorter_tb 
+# Start time: 00:58:17 on Aug 01,2022
+# Loading work.Sorter_tb
+# Loading work.Sorter
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Note: $stop    : D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter_tb.v(34)
+#    Time: 3 ns  Iteration: 0  Instance: /Sorter_tb
+# Break in Module Sorter_tb at D:/caior/Arquivaria/Trabalhos/Grupo de estudo Gutemberg/Comparador/Sorter_tb.v line 34
+# End time: 00:59:20 on Aug 01,2022, Elapsed time: 0:01:03
+# Errors: 0, Warnings: 0

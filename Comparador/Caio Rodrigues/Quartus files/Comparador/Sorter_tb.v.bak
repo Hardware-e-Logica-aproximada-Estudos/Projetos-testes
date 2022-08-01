@@ -1,0 +1,30 @@
+`timescale 1us/1us
+
+module Sorter_tb();
+
+	logic [4,0] inset , outset,
+	logic clk;
+	
+	Sorter srt(.InSet(inset),.clk(clk),.OutSet(outset));
+
+	initial
+		begin
+			$display("Hello world");
+			$monitor("time = %g, inset = %d, outset = %d", $time, inset, outset);
+			$dumpfile("Sorter1.vcd");
+			$dumpvars(0,mod1);
+		end
+		
+	initial
+		begin
+			inset = 0;
+			#1 inset = 5'b00010
+			clk;
+			#1 inset = 5'b00100
+			clk;
+			#1 inset = 5'b01100
+			clk;
+			#1 $finish;
+		end
+
+endmodule
