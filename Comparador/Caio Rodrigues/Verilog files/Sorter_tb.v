@@ -6,7 +6,7 @@ module Sorter_tb();
 
 	reg [63:0] inset;
 	reg clk;	
-   wire [63:0] outset;
+    wire [63:0] outset;
 	
 	reg [7:0] num1, num2, num3, num4, num5, num6, num7, num8;
 	
@@ -38,14 +38,12 @@ module Sorter_tb();
 		
 	 initial
 	    	begin
-			$display("Hello world");
+				$display("Hello world");
           		$monitor("time = %g, inset = %d, outset = %d, clk = %d", $time, inset, outset, clk);
          		$dumpfile("Sorter.vcd");
          		$dumpvars(0,srt);
 	    	end
 		
-	always begin
-		#2 clk = ~clk;
-	end
+	always #2 clk = ~clk;
 
 endmodule

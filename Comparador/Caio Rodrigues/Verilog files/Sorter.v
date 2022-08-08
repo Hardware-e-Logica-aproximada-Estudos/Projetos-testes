@@ -1,4 +1,6 @@
-module Sorter(input [63:0] sortIn, input clk, output reg [63:0] sortOut);
+module Sorter(input [63:0] sortIn, 
+			  input clk, enable,
+			  output reg [63:0] sortOut);
 
 	reg [63:0] data;
 	reg [7:0] regIn [7:0];
@@ -10,28 +12,27 @@ module Sorter(input [63:0] sortIn, input clk, output reg [63:0] sortOut);
 	end
 
 	always @(*) begin
-	
-		regIn[0] = data[7:0];
-		regIn[1] = data[15:8];
-		regIn[2] = data[23:16];
-		regIn[3] = data[31:24];
-		regIn[4] = data[39:32];
-		regIn[5] = data[47:40];
-		regIn[6] = data[55:48];
-		regIn[7] = data[63:56];
-	
-		for(i=0; i < 7; i = i+1) begin
-		for(j=0; j < 7; j = j+1) begin
-			
-				if(regIn[j] < regIn[j+1]) begin
-					keep = regIn[j];
-					regIn[j] = regIn[j+1];
-					regIn[j+1] = keep;
-				end
+		
+			regIn[0] = data[7:0];
+			regIn[1] = data[15:8];
+			regIn[2] = data[23:16];
+			regIn[3] = data[31:24];
+			regIn[4] = data[39:32];
+			regIn[5] = data[47:40];
+			regIn[6] = data[55:48];
+			regIn[7] = data[63:56];
+		
+			for(i=0; i < 7; i = i+1) begin
+			for(j=0; j < 7; j = j+1) begin
 				
+					if(regIn[j] < regIn[j+1]) begin
+						keep = regIn[j];
+						regIn[j] = regIn[j+1];
+						regIn[j+1] = keep;
+					end
+					
+				end
 			end
-		end
-	
 	end
 	
 	always@(*) begin
