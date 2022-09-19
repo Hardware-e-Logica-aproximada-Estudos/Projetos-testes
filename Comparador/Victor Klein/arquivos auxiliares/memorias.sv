@@ -1,4 +1,3 @@
-
 module memoriaIn9_8bit(
   input reset, clock, we,
   input [2:0] wa,

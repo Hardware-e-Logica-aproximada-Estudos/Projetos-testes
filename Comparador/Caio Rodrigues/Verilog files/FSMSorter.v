@@ -1,8 +1,9 @@
 // Code your design here
 
+`include "dataMemory.v"
 `include "Sorter.v"
 
-module fsm(input logic [2:0] in,
+module fsm(input logic [63:0] in,
           input logic clk,
           input logic rst,
           output logic y);
@@ -10,24 +11,46 @@ module fsm(input logic [2:0] in,
   
   parameter IDLE = 2'b00;
   parameter MEM_READ = 2'b01;
-  parameter PROCESSING = 2'b10;
+  parameter SORTING = 2'b10;
   parameter MEM_WRITE = 2'b11;
   
+  logic [3:0] counter;
   logic [1:0] current_state, next_state;
   logic enable;
 
-  combinational salt_and_pepper_filter(in[2], in[1], in[0], enable, y);
+  wire [63:0] inMem_input, inMem_output, outMem_input, outMem_output;
 
-  
+  dataMemory inputMem(.clk(clk), .enable(1), .reset(rst), .inmem(inMem_input), .outmen(inMem_output));
+  dataMemory outputMem(.clk(clk), .enable(1), .reset(rst), .inmem(outMem_input), .outmen(outMem_output));
+
+
   //Next State Logic
   always@(current_state)
   begin
     case(current_state)
-      IDLE: next_state = MEM_READ;
-      MEM_READ: next_state = PROCESSING;
-      PROCESSING: next_state = MEM_WRITE;
-      MEM_WRITE: next_state = MEM_READ;
-      default: next_state = IDLE;
+      IDLE: begin
+        inMem_input = in;
+        counter = counter + 3'd1;
+
+        if(counter == 3'd7) begin
+          next_state = MEM_READ;
+          counter = 3'd0;
+        end
+      end
+      
+      MEM_READ: begin 
+
+        next_state = SORTING;
+      end
+      SORTING: begin  
+        next_state = MEM_WRITE;
+      end
+      MEM_WRITE: begin 
+        next_state = MEM_READ;
+      end
+      default: begin
+        next_state = IDLE;
+      end
     endcase
   end
   
@@ -35,13 +58,15 @@ module fsm(input logic [2:0] in,
   always@(posedge clk)
     begin
       current_state <= rst == 0 ? IDLE : next_state;
+      if(rst == 1)
+        counter = 3'b0;
     end
   
   //Output Logic
   always@(current_state)
     begin
       case(current_state)
-        PROCESSING: enable = 1;
+        SORTING: enable = 1;
         default: enable = 0;
       endcase
     end
